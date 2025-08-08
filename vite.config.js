@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: "https://mozzo1000.github.io/munchlist/",
+	base: "https://munchlist.app",
 	plugins: [
 		react(),
 		tailwindcss(),
