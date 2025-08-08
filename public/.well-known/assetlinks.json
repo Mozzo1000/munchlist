@@ -1,0 +1,12 @@
+[
+	{
+		"relation": ["delegate_permission/common.handle_all_urls"],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "io.github.mozzo1000.twa",
+			"sha256_cert_fingerprints": [
+				"CF:EE:BB:95:0E:1A:62:7A:07:7D:AF:02:86:86:D2:C9:27:0B:F2:0F:DF:F7:77:9E:9E:1C:BF:3E:89:CF:49:12"
+			]
+		}
+	}
+]
