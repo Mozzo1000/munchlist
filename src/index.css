@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@utility no-scrollbar {
+	@apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
+@theme {
+	--color-munchlist-green: #009734;
+}
+
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+}
