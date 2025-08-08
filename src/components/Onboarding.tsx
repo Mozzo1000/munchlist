@@ -6,7 +6,7 @@ const screens = [
 		title: "Welcome to Munchlist!",
 		description:
 			"Your simple grocery shopping companion. Let's show you around!",
-		icon: <img src="/favicon.png" alt="Munchlist Logo" className="w-24 h-24" />,
+		icon: <img src="favicon.png" alt="Munchlist Logo" className="w-24 h-24" />,
 	},
 	{
 		title: "Smart Autocomplete",
