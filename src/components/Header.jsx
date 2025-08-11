@@ -4,7 +4,7 @@ import { ShoppingCart, Rows3, List } from "lucide-react";
 const Header = ({ groupByCategory, setGroupByCategory }) => (
 	<div className="sticky top-0 z-30 bg-gray-100 flex items-center justify-between p-2 pb-8">
 		<div className="flex items-center gap-3">
-			<img src="favicon.png" alt="Munchlist Logo" className="w-10 h-10" />
+			<img src="favicon.webp" alt="Munchlist Logo" className="w-10 h-10" />
 			<h1 className="text-2xl font-bold">Munchlist</h1>
 		</div>
 		<div className="flex gap-0 ml-auto rounded-lg overflow-hidden border border-gray-200 bg-white">
