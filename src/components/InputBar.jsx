@@ -8,13 +8,13 @@ const InputBar = ({
 	children,
 }) => (
 	<div
-		className="fixed bottom-0 left-0 right-0 bg-munchlist-green border-gray-200 shadow-lg z-50 transition-all"
+		className="fixed bottom-0 left-0 right-0 bg-munchlist-green shadow-lg z-50 transition-all"
 		style={{
 			transform: inputBottom ? `translateY(-${inputBottom}px)` : undefined,
 		}}
 	>
-		<div className="max-w-md mx-auto p-4 z-50">
-			<div className="relative z-50">
+		<div className="max-w-md mx-auto p-4">
+			<div className="relative">
 				<input
 					ref={inputRef}
 					type="text"
@@ -32,7 +32,7 @@ const InputBar = ({
 				/>
 				<button
 					onClick={addItem}
-					className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-100"
+					className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
 				>
 					<span className="sr-only">Add</span>
 					<svg

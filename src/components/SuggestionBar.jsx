@@ -35,7 +35,7 @@ const SuggestionBar = ({
 
 	return (
 		<div className="absolute w-full bottom-full left-0 z-50 bg-[#4b6c57] rounded-t-3xl">
-			<div className="sticky top-0 left-0 right-0 bg-munchlist-green rounded-t-3xl p-4 pb-2">
+			<div className="bg-munchlist-green rounded-t-3xl p-4 pb-2">
 				<div className="text-left md:text-center text-lg font-semibold text-white">
 					Vanliga varor
 				</div>
@@ -57,7 +57,7 @@ const SuggestionBar = ({
 						onPointerDown={(e) => handlePointerDown(e, suggestion)}
 						onPointerUp={handlePointerUp}
 						onPointerLeave={handlePointerUp}
-						className="px-4 py-2 text-base rounded-lg bg-gray-50 hover:bg-gray-200 focus:bg-gray-50 focus:outline-none whitespace-nowrap"
+						className="px-4 py-2 text-base rounded-lg bg-gray-50 hover:bg-gray-200 whitespace-nowrap"
 					>
 						{suggestion.name}
 					</button>

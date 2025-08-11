@@ -7,10 +7,10 @@ const Header = ({ groupByCategory, setGroupByCategory }) => (
 			<img src="favicon.webp" alt="Munchlist Logo" className="w-10 h-10" />
 			<h1 className="text-2xl font-bold">Munchlist</h1>
 		</div>
-		<div className="flex gap-0 ml-auto rounded-lg overflow-hidden border border-gray-200 bg-white">
+		<div className="flex ml-auto rounded-lg overflow-hidden border border-gray-200 bg-white">
 			<button
 				onClick={() => setGroupByCategory(true)}
-				className={`flex items-center gap-1 px-3 py-1 transition-colors border-0 rounded-none ${
+				className={`flex items-center gap-1 px-3 py-1 transition-colors ${
 					groupByCategory
 						? "bg-munchlist-green text-white"
 						: "text-[#4b6c57] hover:bg-gray-50"
@@ -22,7 +22,7 @@ const Header = ({ groupByCategory, setGroupByCategory }) => (
 			</button>
 			<button
 				onClick={() => setGroupByCategory(false)}
-				className={`flex items-center gap-1 px-3 py-1 text-sm transition-colors border-0 rounded-none ${
+				className={`flex items-center gap-1 px-3 py-1 transition-colors ${
 					!groupByCategory
 						? "bg-munchlist-green text-white"
 						: "text-[#4b6c57] hover:bg-gray-50"

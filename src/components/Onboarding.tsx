@@ -6,7 +6,7 @@ const screens = [
 		title: "Welcome to Munchlist!",
 		description:
 			"Your simple grocery shopping companion. Let's show you around!",
-		icon: <img src="favicon.png" alt="Munchlist Logo" className="w-24 h-24" />,
+		icon: <img src="favicon.webp" alt="Munchlist Logo" className="w-24 h-24" />,
 	},
 	{
 		title: "Smart Autocomplete",
@@ -58,22 +58,18 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
           flex flex-col items-center justify-center
           w-full h-full
           sm:h-auto sm:w-auto
-          flex-1
         `}
 			>
 				{/* Onboarding content */}
 				<div
 					className="
-            bg-white rounded-none p-4 w-full h-full max-w-none mx-0 text-center
+            bg-white rounded-none p-4 w-full h-full text-center
             flex flex-col
             justify-center items-center
-            sm:rounded-2xl sm:p-8 sm:max-w-md sm:w-full sm:mx-auto sm:h-auto
-            relative
+            sm:rounded-2xl sm:p-8 sm:max-w-md sm:mx-auto sm:h-auto
           "
 				>
-					<div className="mb-6 items-center justify-center flex">
-						{screens[index].icon}
-					</div>
+					<div className="mb-6">{screens[index].icon}</div>
 
 					<h2 className="text-2xl font-bold text-gray-800 mb-4">
 						{screens[index].title}

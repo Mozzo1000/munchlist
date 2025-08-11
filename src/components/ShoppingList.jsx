@@ -33,7 +33,7 @@ const ShoppingList = ({
 	};
 
 	return (
-		<div className="px-4 pb-48 space-y-2 flex-1">
+		<div className="px-4 pb-48 space-y-2">
 			{items?.length === 0 ? (
 				<div className="text-center py-12">
 					<ShoppingCart className="w-24 h-24 text-gray-500 mx-auto mb-4" />
@@ -117,14 +117,14 @@ const ShoppingListItem = ({
 	setDropdownOpen,
 }) => (
 	<div
-		className={`bg-white rounded-lg p-4 shadow-sm border-l-4 transition-all mb-2 ${
+		className={`bg-white rounded-lg p-4 shadow-sm border-l-4 mb-2 ${
 			item.completed ? "border-l-green-500 bg-green-50" : "border-l-amber-500"
 		}`}
 	>
 		<div className="flex items-center gap-3">
 			<button
 				onClick={() => toggleComplete(item.id)}
-				className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors flex-shrink-0 ${
+				className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
 					item.completed
 						? "bg-green-500 border-green-500 text-white"
 						: "border-gray-300 hover:border-munchlist-green"

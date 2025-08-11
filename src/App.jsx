@@ -259,7 +259,7 @@ function App() {
 
 	return (
 		<div
-			className="bg-gray-100 flex flex-col relative overflow-hidden"
+			className="bg-gray-100 flex flex-col"
 			style={
 				inputFocused && isMobile
 					? {
@@ -277,7 +277,7 @@ function App() {
 				setGroupByCategory={setGroupByCategory}
 			/>
 			<div
-				className={`flex-1 flex flex-col items-center justify-start w-full transition-all duration-200 ${
+				className={`flex-1 flex flex-col items-center justify-start ${
 					inputFocused ? "overflow-hidden" : "overflow-y-auto"
 				}`}
 				style={
