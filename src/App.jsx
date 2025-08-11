@@ -49,6 +49,13 @@ function App() {
 		open: false,
 		suggestion: null,
 	});
+	const [initialViewportHeight, setInitialViewportHeight] = useState(
+		typeof window !== "undefined" ? window.innerHeight : 0
+	);
+
+	useEffect(() => {
+		setInitialViewportHeight(window.innerHeight);
+	}, []);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -245,13 +252,43 @@ function App() {
 		}
 	});
 
+	// Utility to detect mobile
+	const isMobile =
+		typeof window !== "undefined" &&
+		/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 	return (
-		<div className="h-screen bg-gray-100 flex flex-col relative overflow-hidden">
+		<div
+			className="bg-gray-100 flex flex-col relative overflow-hidden"
+			style={
+				inputFocused && isMobile
+					? {
+							position: "fixed",
+							inset: 0,
+							height: "100dvh",
+							width: "100vw",
+							overscrollBehavior: "none",
+					  }
+					: { height: initialViewportHeight }
+			}
+		>
 			<Header
 				groupByCategory={groupByCategory}
 				setGroupByCategory={setGroupByCategory}
 			/>
-			<div className="flex-1 overflow-y-auto flex flex-col items-center justify-start w-full">
+			<div
+				className={`flex-1 flex flex-col items-center justify-start w-full transition-all duration-200 ${
+					inputFocused ? "overflow-hidden" : "overflow-y-auto"
+				}`}
+				style={
+					inputFocused
+						? {
+								height: `calc(${initialViewportHeight}px - ${inputBottom}px)`,
+								touchAction: "none",
+						  }
+						: { height: initialViewportHeight }
+				}
+			>
 				<div className="w-full max-w-md">
 					<ShoppingList
 						items={items}
