@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Mozzo1000/munchlist">
-    <img src="public/favicon.png" height="120px" width="120px"/>
+    <img src="public/favicon.webp" height="120px" width="120px"/>
   </a>
 
 <h3 align="center">Munchlist</h3>
@@ -21,14 +21,12 @@
 **Munchlist** is a simple, fast, and user-friendly grocery shopping companion built with React.  
 It helps you manage your shopping list with smart suggestions, categories, and a delightful mobile-first experience.
 
-<img src="assets/library.png" />
-
 ## ✨ Features
 
 - **Smart Autocomplete**  
   Get instant suggestions from a built-in database of common grocery items as you type.
 
-- **Custom Items:**  
+- **Custom Items**  
   Add your own items to the suggestion list. Edit or remove them at any time.
 
 - **Organize by Category**  
