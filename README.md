@@ -21,10 +21,10 @@
 **Munchlist** is a simple, fast, and user-friendly grocery shopping companion built with React.  
 It helps you manage your shopping list with smart suggestions, categories, and a delightful mobile-first experience.
 
-<p align="middle" float="left">
-  <img src="assets/feature_01.png" width="100" />
-  <img src="assets/feature_02.png" width="100" /> 
-  <img src="assets/feature_03.png" width="100" />
+<p float="left" align="middle">
+  <img src="assets/feature_01.png" width="225" />
+  <img src="assets/feature_02.png" width="225" /> 
+  <img src="assets/feature_03.png" width="225" />
 </p>
 
 ## ✨ Features
