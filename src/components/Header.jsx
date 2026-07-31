@@ -4,11 +4,7 @@ import { Rows3, List } from "lucide-react";
 const Header = ({ groupByCategory, setGroupByCategory }) => (
 	<div className="sticky top-0 z-30 bg-munchlist-bg flex items-center justify-between p-3 pb-8">
 		<div className="flex items-center gap-3">
-			<img
-				src="favicon.webp"
-				alt="Munchlist Logo"
-				className="w-10 h-10 rounded-xl"
-			/>
+			<img src="logo.svg" alt="Munchlist Logo" className="w-10 h-10" />
 			<h1 className="text-2xl font-extrabold tracking-tight text-munchlist-ink">
 				Munchlist
 			</h1>

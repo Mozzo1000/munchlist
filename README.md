@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Mozzo1000/munchlist">
-    <img src="public/favicon.webp" height="120px" width="120px"/>
+    <img src="public/logo.svg" height="120px" width="120px"/>
   </a>
 
 <h3 align="center">Munchlist</h3>

@@ -32,7 +32,7 @@ export default defineConfig({
 				name: "Munchlist",
 				short_name: "Munchlist",
 				description: "Simple grocery list app",
-				theme_color: "#009734",
+				theme_color: "#0e8a3c",
 				display: "standalone",
 			},
 
