@@ -36,7 +36,7 @@ const ShoppingList = ({
 		<div className="px-4 pb-48 space-y-2">
 			{items?.length === 0 ? (
 				<div className="text-center py-12">
-					<ShoppingCart className="w-20 h-20 text-munchlist-line mx-auto mb-4" />
+					<ShoppingCart className="w-20 h-20 text-munchlist-muted/40 mx-auto mb-4" />
 					<p className="text-2xl font-extrabold text-munchlist-ink mb-2">
 						Your shopping list is empty
 					</p>
