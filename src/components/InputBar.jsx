@@ -2,22 +2,30 @@ const InputBar = ({
 	newItem,
 	addItem,
 	inputRef,
+	inputBarRef,
 	setInputFocused,
 	handleItemInputChange,
-	inputBottom,
+	inputBarTop,
 	children,
 }) => (
 	<div
-		className="fixed bottom-0 left-0 right-0 bg-munchlist-green shadow-lg z-50 transition-all"
-		style={{
-			transform: inputBottom ? `translateY(-${inputBottom}px)` : undefined,
-		}}
+		ref={inputBarRef}
+		className="fixed left-0 right-0 bg-munchlist-green shadow-lg z-50"
+		style={
+			inputBarTop != null
+				? { top: `${inputBarTop}px`, bottom: "auto" }
+				: { bottom: 0 }
+		}
 	>
 		<div className="max-w-md mx-auto p-4">
 			<div className="relative flex items-center bg-white rounded-2xl pl-4 pr-1.5 py-1.5 gap-2">
 				<input
 					ref={inputRef}
 					type="text"
+					name="grocery-item"
+					autoComplete="off"
+					data-lpignore="true"
+					data-1p-ignore="true"
 					value={newItem}
 					onChange={(e) => handleItemInputChange(e.target.value)}
 					onKeyDown={(e) => {

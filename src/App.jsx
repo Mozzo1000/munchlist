@@ -44,7 +44,8 @@ function App() {
 		return stored === null ? true : stored === "true";
 	});
 	const inputRef = useRef(null);
-	const [inputBottom, setInputBottom] = useState(0);
+	const inputBarRef = useRef(null);
+	const [inputBarTop, setInputBarTop] = useState(null);
 	const [deleteDialog, setDeleteDialog] = useState({
 		open: false,
 		suggestion: null,
@@ -58,23 +59,33 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		const handleResize = () => {
-			if (window.visualViewport) {
-				const viewport = window.visualViewport;
-				const keyboardHeight =
-					window.innerHeight - viewport.height - viewport.offsetTop;
-				setInputBottom(keyboardHeight > 0 ? keyboardHeight : 0);
-			}
+		if (!inputFocused) {
+			setInputBarTop(null);
+			return;
+		}
+		const viewport = window.visualViewport;
+		if (!viewport) return;
+
+		// Anchor the bar's `top` directly to visualViewport coordinates rather
+		// than deriving a `bottom` offset from window.innerHeight: innerHeight's
+		// relationship to the keyboard-shrunk viewport varies across mobile
+		// browsers, which was causing the bar to land in the wrong place. Using
+		// only the visual viewport's own offsetTop/height keeps it correct
+		// regardless of how the browser resizes the layout viewport.
+		const updatePosition = () => {
+			const barHeight = inputBarRef.current?.offsetHeight || 0;
+			setInputBarTop(viewport.offsetTop + viewport.height - barHeight);
 		};
 
-		window.visualViewport?.addEventListener("resize", handleResize);
-		window.visualViewport?.addEventListener("scroll", handleResize);
+		updatePosition();
+		viewport.addEventListener("resize", updatePosition);
+		viewport.addEventListener("scroll", updatePosition);
 
 		return () => {
-			window.visualViewport?.removeEventListener("resize", handleResize);
-			window.visualViewport?.removeEventListener("scroll", handleResize);
+			viewport.removeEventListener("resize", updatePosition);
+			viewport.removeEventListener("scroll", updatePosition);
 		};
-	}, []);
+	}, [inputFocused]);
 
 	useEffect(() => {
 		localStorage.setItem("munchlist-group-by-category", groupByCategory);
@@ -252,42 +263,22 @@ function App() {
 		}
 	});
 
-	// Utility to detect mobile
-	const isMobile =
-		typeof window !== "undefined" &&
-		/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
 	return (
+		// Height and scroll position are never touched by focus/keyboard state:
+		// the list stays exactly where it is, and only the backdrop + input bar
+		// float on top of it (like a drawer), positioned above the keyboard via
+		// inputBarTop below. This avoids fighting the keyboard for layout space.
 		<div
 			className="bg-munchlist-bg flex flex-col"
-			style={
-				inputFocused && isMobile
-					? {
-							position: "fixed",
-							inset: 0,
-							height: "100dvh",
-							width: "100vw",
-							overscrollBehavior: "none",
-					  }
-					: { height: initialViewportHeight }
-			}
+			style={{ height: initialViewportHeight }}
 		>
 			<Header
 				groupByCategory={groupByCategory}
 				setGroupByCategory={setGroupByCategory}
 			/>
 			<div
-				className={`flex-1 flex flex-col items-center justify-start ${
-					inputFocused ? "overflow-hidden" : "overflow-y-auto"
-				}`}
-				style={
-					inputFocused
-						? {
-								height: `calc(${initialViewportHeight}px - ${inputBottom}px)`,
-								touchAction: "none",
-						  }
-						: { height: initialViewportHeight }
-				}
+				className="flex-1 flex flex-col items-center justify-start overflow-y-auto"
+				style={{ height: initialViewportHeight }}
 			>
 				<div className="w-full max-w-md">
 					<ShoppingList
@@ -313,12 +304,13 @@ function App() {
 				setNewItem={setNewItem}
 				addItem={addItem}
 				inputRef={inputRef}
+				inputBarRef={inputBarRef}
 				inputFocused={inputFocused}
 				setInputFocused={setInputFocused}
 				handleItemInputChange={handleItemInputChange}
 				filteredSuggestions={filteredSuggestions}
 				selectSuggestion={selectSuggestion}
-				inputBottom={inputBottom}
+				inputBarTop={inputBarTop}
 			>
 				<SuggestionBar
 					inputFocused={inputFocused}
