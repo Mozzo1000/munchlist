@@ -259,7 +259,7 @@ function App() {
 
 	return (
 		<div
-			className="bg-gray-100 flex flex-col"
+			className="bg-munchlist-bg flex flex-col"
 			style={
 				inputFocused && isMobile
 					? {
@@ -347,14 +347,14 @@ function App() {
 
 			{deleteDialog.open && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-					<div className="bg-white rounded-lg p-6 shadow-lg">
-						<p className="mb-4">
+					<div className="bg-white rounded-2xl p-6 shadow-lg border border-munchlist-line">
+						<p className="mb-4 text-munchlist-ink">
 							Delete "{deleteDialog.suggestion.name}" from your custom
 							suggestions?
 						</p>
 						<div className="flex gap-3 justify-end">
 							<button
-								className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200"
+								className="px-4 py-2 font-bold bg-munchlist-surface-alt text-munchlist-ink rounded-xl hover:bg-munchlist-line"
 								onClick={() =>
 									setDeleteDialog({ open: false, suggestion: null })
 								}
@@ -362,7 +362,7 @@ function App() {
 								Cancel
 							</button>
 							<button
-								className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+								className="px-4 py-2 font-bold bg-munchlist-danger text-white rounded-xl hover:opacity-90"
 								onClick={() => {
 									const items = getCustomGroceryItems().filter(
 										(item) =>

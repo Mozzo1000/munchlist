@@ -14,7 +14,7 @@ const InputBar = ({
 		}}
 	>
 		<div className="max-w-md mx-auto p-4">
-			<div className="relative">
+			<div className="relative flex items-center bg-white rounded-2xl pl-4 pr-1.5 py-1.5 gap-2">
 				<input
 					ref={inputRef}
 					type="text"
@@ -28,11 +28,11 @@ const InputBar = ({
 					onFocus={() => setInputFocused(true)}
 					onBlur={() => setTimeout(() => setInputFocused(false), 100)}
 					placeholder="Add grocery item..."
-					className="bg-white w-full px-4 py-3 pr-12 rounded-lg border border-gray-200 focus:outline-none focus:border-transparent"
+					className="flex-1 min-w-0 py-2 text-munchlist-ink placeholder:text-munchlist-muted focus:outline-none"
 				/>
 				<button
 					onClick={addItem}
-					className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
+					className="flex-none w-10 h-10 flex items-center justify-center bg-munchlist-green text-white rounded-xl hover:bg-munchlist-green-deep transition-colors"
 				>
 					<span className="sr-only">Add</span>
 					<svg
@@ -44,7 +44,7 @@ const InputBar = ({
 						<path
 							strokeLinecap="round"
 							strokeLinejoin="round"
-							strokeWidth={2}
+							strokeWidth={2.4}
 							d="M12 4v16m8-8H4"
 						/>
 					</svg>

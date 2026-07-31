@@ -41,11 +41,11 @@ const EditDrawer = ({
 		>
 			<div className="flex flex-col h-full">
 				{/* Drawer Header */}
-				<div className="flex items-center justify-between p-4 border-b border-gray-200">
-					<h3 className="text-lg font-semibold text-gray-800">Edit</h3>
+				<div className="flex items-center justify-between p-4 border-b border-munchlist-line">
+					<h3 className="text-lg font-extrabold text-munchlist-ink">Edit</h3>
 					<button
 						onClick={closeDrawer}
-						className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+						className="p-2 rounded-lg text-munchlist-muted hover:bg-munchlist-surface-alt hover:text-munchlist-ink transition-colors"
 					>
 						<X className="w-5 h-5" />
 					</button>
@@ -54,21 +54,21 @@ const EditDrawer = ({
 				<div className="flex-1 p-4 space-y-6">
 					{drawerItemId && (
 						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className="block text-xs font-bold uppercase tracking-wide text-munchlist-muted mb-2">
 								Name
 							</label>
 							<input
 								type="text"
 								value={editText}
 								onChange={(e) => setEditText(e.target.value)}
-								className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg"
+								className="w-full px-4 py-3 bg-munchlist-surface-alt border border-munchlist-line rounded-xl focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg text-munchlist-ink"
 								placeholder="Edit item name..."
 							/>
 						</div>
 					)}
 					<div className="flex gap-3">
 						<div className="flex-1">
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className="block text-xs font-bold uppercase tracking-wide text-munchlist-muted mb-2">
 								Quantity
 							</label>
 							<input
@@ -77,18 +77,18 @@ const EditDrawer = ({
 								onChange={(e) => setQuantity(e.target.value)}
 								min="0"
 								step="0.1"
-								className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg"
+								className="w-full px-4 py-3 bg-munchlist-surface-alt border border-munchlist-line rounded-xl focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg text-munchlist-ink"
 								placeholder="Enter quantity..."
 							/>
 						</div>
 						<div className="w-40">
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className="block text-xs font-bold uppercase tracking-wide text-munchlist-muted mb-2">
 								Unit
 							</label>
 							<select
 								value={unit}
 								onChange={(e) => setUnit(e.target.value)}
-								className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg"
+								className="w-full px-4 py-3 bg-munchlist-surface-alt border border-munchlist-line rounded-xl focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg text-munchlist-ink"
 							>
 								<option value="">Ingen</option>
 								{UNITS.map((unit) => (
@@ -100,13 +100,13 @@ const EditDrawer = ({
 						</div>
 					</div>
 					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
+						<label className="block text-xs font-bold uppercase tracking-wide text-munchlist-muted mb-2">
 							Category
 						</label>
 						<select
 							value={category}
 							onChange={(e) => setCategory(e.target.value)}
-							className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg"
+							className="w-full px-4 py-3 bg-munchlist-surface-alt border border-munchlist-line rounded-xl focus:outline-none focus:ring-2 focus:ring-munchlist-green focus:border-transparent text-lg text-munchlist-ink"
 						>
 							{CATEGORIES.map((item) => (
 								<option key={item} value={item}>
@@ -116,17 +116,17 @@ const EditDrawer = ({
 						</select>
 					</div>
 				</div>
-				<div className="p-4 border-t border-gray-200">
+				<div className="p-4 border-t border-munchlist-line">
 					<div className="flex gap-3">
 						<button
 							onClick={closeDrawer}
-							className="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+							className="flex-1 px-4 py-3 bg-munchlist-surface-alt text-munchlist-ink font-bold rounded-xl hover:bg-munchlist-line transition-colors"
 						>
 							Cancel
 						</button>
 						<button
 							onClick={saveItemEdit}
-							className="flex-1 px-4 py-3 bg-munchlist-green text-white rounded-lg hover:bg-[#239651] transition-colors"
+							className="flex-1 px-4 py-3 bg-munchlist-green text-white font-bold rounded-xl hover:bg-munchlist-green-deep transition-colors"
 						>
 							Save
 						</button>

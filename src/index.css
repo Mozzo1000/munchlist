@@ -5,7 +5,15 @@
 }
 
 @theme {
-	--color-munchlist-green: #009734;
+	--color-munchlist-green: #0e8a3c;
+	--color-munchlist-green-deep: #0a6b2e;
+	--color-munchlist-bg: #f7f4ec;
+	--color-munchlist-surface-alt: #fbf9f2;
+	--color-munchlist-ink: #20291f;
+	--color-munchlist-muted: #71806f;
+	--color-munchlist-line: #e9e2d1;
+	--color-munchlist-amber: #e2a63d;
+	--color-munchlist-danger: #c1473c;
 }
 
 html,

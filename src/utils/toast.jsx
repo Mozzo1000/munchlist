@@ -5,7 +5,7 @@ export function showItemAddedToast({ name, id, openDrawer }) {
 		<span>
 			<span className="font-semibold">{name}</span> added!
 			<button
-				className="ml-3 px-3 py-1 text-sm bg-munchlist-green text-white rounded-lg hover:bg-[#239651] transition-colors"
+				className="ml-3 px-3 py-1 text-sm font-bold bg-munchlist-green text-white rounded-lg hover:bg-munchlist-green-deep transition-colors"
 				onClick={() => {
 					openDrawer(id, true);
 					toast.dismiss();

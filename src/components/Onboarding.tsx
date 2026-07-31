@@ -71,11 +71,11 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 				>
 					<div className="mb-6">{screens[index].icon}</div>
 
-					<h2 className="text-2xl font-bold text-gray-800 mb-4">
+					<h2 className="text-2xl font-extrabold text-munchlist-ink mb-4">
 						{screens[index].title}
 					</h2>
 
-					<p className="text-gray-600 mb-8 leading-relaxed">
+					<p className="text-munchlist-muted mb-8 leading-relaxed">
 						{screens[index].description}
 					</p>
 
@@ -85,7 +85,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 							<span
 								key={i}
 								className={`w-3 h-3 rounded-full ${
-									i === index ? "bg-munchlist-green" : "bg-gray-300"
+									i === index ? "bg-munchlist-green" : "bg-munchlist-line"
 								}`}
 							/>
 						))}
@@ -95,7 +95,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 					<div className="hidden sm:flex gap-3 w-full mt-4 justify-between">
 						{index === 0 && (
 							<button
-								className="min-w-20 px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+								className="min-w-20 px-4 py-3 bg-munchlist-surface-alt text-munchlist-ink font-bold rounded-xl hover:bg-munchlist-line transition-colors flex items-center justify-center gap-2"
 								onClick={() => onFinish()}
 							>
 								Skip
@@ -104,7 +104,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 
 						{index > 0 && (
 							<button
-								className="min-w-20 px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+								className="min-w-20 px-4 py-3 bg-munchlist-surface-alt text-munchlist-ink font-bold rounded-xl hover:bg-munchlist-line transition-colors flex items-center justify-center gap-2"
 								onClick={back}
 							>
 								<ChevronLeft className="w-4 h-4" />
@@ -112,7 +112,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 							</button>
 						)}
 						<button
-							className="min-w-20 px-4 py-3 bg-munchlist-green text-white rounded-lg hover:bg-[#239651] transition-colors flex items-center justify-center gap-2"
+							className="min-w-20 px-4 py-3 bg-munchlist-green text-white font-bold rounded-xl hover:bg-munchlist-green-deep transition-colors flex items-center justify-center gap-2"
 							onClick={next}
 						>
 							{index === screens.length - 1 ? "Get Started" : "Next"}
@@ -127,7 +127,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 			<div className="flex sm:hidden gap-3 w-full px-4 pb-6 pt-3 fixed bottom-0 justify-between">
 				{index === 0 && (
 					<button
-						className="min-w-20 px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+						className="min-w-20 px-4 py-3 bg-munchlist-surface-alt text-munchlist-ink font-bold rounded-xl hover:bg-munchlist-line transition-colors flex items-center justify-center gap-2"
 						onClick={() => onFinish()}
 					>
 						Skip
@@ -135,7 +135,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 				)}
 				{index > 0 && (
 					<button
-						className="min-w-20 px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+						className="min-w-20 px-4 py-3 bg-munchlist-surface-alt text-munchlist-ink font-bold rounded-xl hover:bg-munchlist-line transition-colors flex items-center justify-center gap-2"
 						onClick={back}
 					>
 						<ChevronLeft className="w-4 h-4" />
@@ -143,7 +143,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 					</button>
 				)}
 				<button
-					className="min-w-20 px-4 py-3 bg-munchlist-green text-white rounded-lg hover:bg-[#239651] transition-colors flex items-center justify-center gap-2"
+					className="min-w-20 px-4 py-3 bg-munchlist-green text-white font-bold rounded-xl hover:bg-munchlist-green-deep transition-colors flex items-center justify-center gap-2"
 					onClick={next}
 				>
 					{index === screens.length - 1 ? "Get Started" : "Next"}

@@ -34,13 +34,13 @@ const SuggestionBar = ({
 	};
 
 	return (
-		<div className="absolute w-full bottom-full left-0 z-50 bg-[#4b6c57] rounded-t-3xl">
-			<div className="bg-munchlist-green rounded-t-3xl p-4 pb-2">
-				<div className="text-left md:text-center text-lg font-semibold text-white">
+		<div className="absolute w-full bottom-full left-0 z-50 bg-munchlist-green-deep rounded-t-3xl">
+			<div className="rounded-t-3xl p-4 pb-2">
+				<div className="text-left md:text-center text-sm font-bold tracking-wide uppercase text-white/85">
 					Vanliga varor
 				</div>
 			</div>
-			<div className="flex flex-row gap-2 px-4 pb-4 overflow-x-auto no-scrollbar bg-munchlist-green md:justify-center">
+			<div className="flex flex-row gap-2 px-4 pb-4 overflow-x-auto no-scrollbar md:justify-center">
 				{filteredSuggestions.map((suggestion, index) => (
 					<button
 						key={index}
@@ -57,7 +57,7 @@ const SuggestionBar = ({
 						onPointerDown={(e) => handlePointerDown(e, suggestion)}
 						onPointerUp={handlePointerUp}
 						onPointerLeave={handlePointerUp}
-						className="px-4 py-2 text-base rounded-lg bg-gray-50 hover:bg-gray-200 whitespace-nowrap"
+						className="px-4 py-2 text-base font-medium rounded-xl bg-white/15 text-white hover:bg-white/25 whitespace-nowrap transition-colors"
 					>
 						{suggestion.name}
 					</button>

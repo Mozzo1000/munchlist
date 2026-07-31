@@ -1,31 +1,36 @@
 import React from "react";
-import { ShoppingCart, Rows3, List } from "lucide-react";
+import { Rows3, List } from "lucide-react";
 
 const Header = ({ groupByCategory, setGroupByCategory }) => (
-	<div className="sticky top-0 z-30 bg-gray-100 flex items-center justify-between p-2 pb-8">
+	<div className="sticky top-0 z-30 bg-munchlist-bg flex items-center justify-between p-3 pb-8">
 		<div className="flex items-center gap-3">
-			<img src="favicon.webp" alt="Munchlist Logo" className="w-10 h-10" />
-			<h1 className="text-2xl font-bold">Munchlist</h1>
+			<img
+				src="favicon.webp"
+				alt="Munchlist Logo"
+				className="w-10 h-10 rounded-xl"
+			/>
+			<h1 className="text-2xl font-extrabold tracking-tight text-munchlist-ink">
+				Munchlist
+			</h1>
 		</div>
-		<div className="flex ml-auto rounded-lg overflow-hidden border border-gray-200 bg-white">
+		<div className="flex ml-auto rounded-xl overflow-hidden border border-munchlist-line bg-white p-1 gap-1">
 			<button
 				onClick={() => setGroupByCategory(true)}
-				className={`flex items-center gap-1 px-3 py-1 transition-colors ${
+				className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
 					groupByCategory
 						? "bg-munchlist-green text-white"
-						: "text-[#4b6c57] hover:bg-gray-50"
+						: "text-munchlist-muted hover:bg-munchlist-surface-alt"
 				}`}
 				title="Show by category"
-				style={{ borderRight: "1px solid #e5e7eb" }}
 			>
 				<Rows3 className="w-6 h-6" />
 			</button>
 			<button
 				onClick={() => setGroupByCategory(false)}
-				className={`flex items-center gap-1 px-3 py-1 transition-colors ${
+				className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
 					!groupByCategory
 						? "bg-munchlist-green text-white"
-						: "text-[#4b6c57] hover:bg-gray-50"
+						: "text-munchlist-muted hover:bg-munchlist-surface-alt"
 				}`}
 				title="Show as list"
 			>
