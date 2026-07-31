@@ -61,10 +61,14 @@ function App() {
 		const handleResize = () => {
 			if (window.visualViewport) {
 				const viewport = window.visualViewport;
-				const keyboardHeight =
-					window.innerHeight - viewport.height - viewport.offsetTop;
+				const keyboardHeight = window.innerHeight - viewport.height;
 				setInputBottom(keyboardHeight > 0 ? keyboardHeight : 0);
 			}
+			// iOS auto-scrolls the page to bring the focused input into view,
+			// fighting with our own translateY-based positioning and causing the
+			// bar to jump up (native scroll) then snap back down (our correction).
+			// Canceling that native scroll keeps our JS in sole control.
+			if (window.scrollY !== 0) window.scrollTo(0, 0);
 		};
 
 		window.visualViewport?.addEventListener("resize", handleResize);

@@ -8,7 +8,7 @@ const InputBar = ({
 	children,
 }) => (
 	<div
-		className="fixed bottom-0 left-0 right-0 bg-munchlist-green shadow-lg z-50 transition-all"
+		className="fixed bottom-0 left-0 right-0 bg-munchlist-green shadow-lg z-50 transition-transform duration-100 ease-out"
 		style={{
 			transform: inputBottom ? `translateY(-${inputBottom}px)` : undefined,
 		}}
