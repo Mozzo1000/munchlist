@@ -127,7 +127,8 @@ const ShoppingListItem = ({
 
 	return (
 	<div
-		className={`rounded-2xl p-3.5 border mb-2 transition-colors ${
+		onClick={handleToggle}
+		className={`rounded-2xl p-3.5 border mb-2 cursor-pointer transition-colors ${
 			justToggled ? "duration-700" : "duration-300"
 		} ${
 			justToggled
@@ -138,8 +139,7 @@ const ShoppingListItem = ({
 		}`}
 	>
 		<div className="flex items-center gap-3">
-			<button
-				onClick={handleToggle}
+			<div
 				className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
 					item.completed
 						? "bg-munchlist-green border-munchlist-green text-white"
@@ -147,7 +147,7 @@ const ShoppingListItem = ({
 				} ${justToggled ? "animate-check-pop" : ""}`}
 			>
 				{item.completed && <Check className="w-4 h-4" />}
-			</button>
+			</div>
 			<div className="flex-1 flex flex-row items-center gap-2 min-w-0">
 				<span
 					className={`text-munchlist-muted text-sm font-semibold ${
@@ -167,7 +167,7 @@ const ShoppingListItem = ({
 					{item.name}
 				</span>
 			</div>
-			<div className="relative">
+			<div className="relative" onClick={(e) => e.stopPropagation()}>
 				<button
 					onClick={() =>
 						setDropdownOpen(dropdownOpen === item.id ? null : item.id)
