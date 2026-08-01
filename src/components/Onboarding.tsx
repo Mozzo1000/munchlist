@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Settings, List, Edit3, ChevronRight, ChevronLeft } from "lucide-react";
+import logo from "../assets/logo.svg";
 
 export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 	const { t } = useTranslation();
@@ -10,7 +11,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 		{
 			title: t("onboarding.screen1Title"),
 			description: t("onboarding.screen1Desc"),
-			icon: <img src="logo.svg" alt="Munchlist Logo" className="w-24 h-24" />,
+			icon: <img src={logo} alt="Munchlist Logo" className="w-24 h-24" />,
 		},
 		{
 			title: t("onboarding.screen2Title"),

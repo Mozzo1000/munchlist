@@ -10,18 +10,13 @@ export default defineConfig({
 		sourcemap: false,
 		target: "esnext",
 		minify: "esbuild",
-		terserOptions: {
-			compress: {
-				drop_console: true,
-			},
-		},
 	},
 	plugins: [
 		react(),
 		tailwindcss(),
 		VitePWA({
 			registerType: "prompt",
-			injectRegister: true,
+			injectRegister: "auto",
 
 			pwaAssets: {
 				disabled: false,

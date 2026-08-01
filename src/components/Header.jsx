@@ -1,13 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Rows3, List, Settings } from "lucide-react";
+import logo from "../assets/logo.svg";
 
 const Header = ({ groupByCategory, setGroupByCategory, openSettings }) => {
 	const { t } = useTranslation();
 	return (
 		<div className="sticky top-0 z-30 bg-munchlist-bg flex items-center justify-between p-3 pb-8">
 			<div className="flex items-center gap-3">
-				<img src="logo.svg" alt="Munchlist Logo" className="w-10 h-10" />
+				<img src={logo} alt="Munchlist Logo" className="w-10 h-10" />
 				<h1 className="text-2xl font-extrabold tracking-tight text-munchlist-ink">
 					Munchlist
 				</h1>

@@ -1,12 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "./db.jsx";
 import Header from "./components/Header";
 import ShoppingList from "./components/ShoppingList";
 import InputBar from "./components/InputBar";
-import EditDrawer from "./components/EditDrawer.jsx";
-import SettingsDrawer from "./components/SettingsDrawer.jsx";
 import SuggestionBar from "./components/SuggestionBar";
 import {
 	CATEGORY_IDS,
@@ -15,7 +13,10 @@ import {
 	getAllGroceryItems,
 	updateCustomGroceryItem,
 } from "./utils/groceryData";
-import Onboarding from "./components/Onboarding";
+
+const EditDrawer = lazy(() => import("./components/EditDrawer.jsx"));
+const SettingsDrawer = lazy(() => import("./components/SettingsDrawer.jsx"));
+const Onboarding = lazy(() => import("./components/Onboarding"));
 
 function App() {
 	const { t, i18n } = useTranslation();
@@ -301,23 +302,31 @@ function App() {
 					setDeleteDialog={setDeleteDialog}
 				/>
 			</InputBar>
-			<EditDrawer
-				drawerOpen={drawerOpen}
-				closeDrawer={closeDrawer}
-				drawerItemId={drawerItemId}
-				items={items}
-				editText={editText}
-				setEditText={setEditText}
-				quantity={quantity}
-				setQuantity={setQuantity}
-				unit={unit}
-				setUnit={setUnit}
-				category={category}
-				setCategory={setCategory}
-				saveItemEdit={saveItemEdit}
-			/>
-			<SettingsDrawer settingsOpen={settingsOpen} closeSettings={closeSettings} />
-			{showOnboarding && <Onboarding onFinish={handleCloseOnboarding} />}
+			<Suspense fallback={null}>
+				<EditDrawer
+					drawerOpen={drawerOpen}
+					closeDrawer={closeDrawer}
+					drawerItemId={drawerItemId}
+					items={items}
+					editText={editText}
+					setEditText={setEditText}
+					quantity={quantity}
+					setQuantity={setQuantity}
+					unit={unit}
+					setUnit={setUnit}
+					category={category}
+					setCategory={setCategory}
+					saveItemEdit={saveItemEdit}
+				/>
+			</Suspense>
+			<Suspense fallback={null}>
+				<SettingsDrawer settingsOpen={settingsOpen} closeSettings={closeSettings} />
+			</Suspense>
+			{showOnboarding && (
+				<Suspense fallback={null}>
+					<Onboarding onFinish={handleCloseOnboarding} />
+				</Suspense>
+			)}
 
 			{deleteDialog.open && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
