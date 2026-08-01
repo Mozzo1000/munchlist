@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
 	Check,
 	Trash2,
@@ -115,22 +116,35 @@ const ShoppingListItem = ({
 	deleteItem,
 	dropdownOpen,
 	setDropdownOpen,
-}) => (
+}) => {
+	const [justToggled, setJustToggled] = useState(false);
+
+	const handleToggle = () => {
+		setJustToggled(true);
+		toggleComplete(item.id);
+		setTimeout(() => setJustToggled(false), 500);
+	};
+
+	return (
 	<div
-		className={`rounded-2xl p-3.5 border mb-2 ${
-			item.completed
+		className={`rounded-2xl p-3.5 border mb-2 transition-colors ${
+			justToggled ? "duration-700" : "duration-300"
+		} ${
+			justToggled
+				? "bg-munchlist-green/40 border-munchlist-green"
+				: item.completed
 				? "bg-munchlist-surface-alt border-munchlist-line"
 				: "bg-white border-munchlist-line shadow-sm"
 		}`}
 	>
 		<div className="flex items-center gap-3">
 			<button
-				onClick={() => toggleComplete(item.id)}
+				onClick={handleToggle}
 				className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
 					item.completed
 						? "bg-munchlist-green border-munchlist-green text-white"
 						: "border-munchlist-line hover:border-munchlist-green"
-				}`}
+				} ${justToggled ? "animate-check-pop" : ""}`}
 			>
 				{item.completed && <Check className="w-4 h-4" />}
 			</button>
@@ -196,6 +210,7 @@ const ShoppingListItem = ({
 			</div>
 		</div>
 	</div>
-);
+	);
+};
 
 export default ShoppingList;

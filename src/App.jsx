@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { ToastContainer } from "react-toastify";
-import { showItemAddedToast } from "./utils/toast";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "./db.jsx";
 import Header from "./components/Header";
@@ -203,19 +201,9 @@ function App() {
 					quantity: undefined,
 					unit: undefined,
 				});
-				showItemAddedToast({
-					name: existingItem.name,
-					id: existingItem.id,
-					openDrawer,
-				});
 			} else {
 				let newQuantity = (existingItem.quantity || 1) + 1;
 				await db.items.update(existingItem.id, { quantity: newQuantity });
-				showItemAddedToast({
-					name: existingItem.name,
-					id: existingItem.id,
-					openDrawer,
-				});
 			}
 			setNewItem("");
 			setQuantity("");
@@ -231,7 +219,7 @@ function App() {
 				? parseFloat(quantity)
 				: undefined;
 
-		const id = await db.items.add({
+		await db.items.add({
 			name: name,
 			quantity: quantityValue,
 			unit: nameOverride || categoryOverride ? "" : unit || "",
@@ -239,7 +227,6 @@ function App() {
 			createdAt: new Date(),
 		});
 
-		showItemAddedToast({ name, id, openDrawer });
 		setNewItem("");
 		setQuantity("");
 		setUnit("");
@@ -334,7 +321,6 @@ function App() {
 				setCategory={setCategory}
 				saveItemEdit={saveItemEdit}
 			/>
-			<ToastContainer stacked position="top-center" />
 			{showOnboarding && <Onboarding onFinish={handleCloseOnboarding} />}
 
 			{deleteDialog.open && (
