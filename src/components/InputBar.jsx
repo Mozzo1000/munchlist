@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 const InputBar = ({
 	newItem,
 	addItem,
@@ -7,7 +9,9 @@ const InputBar = ({
 	handleItemInputChange,
 	inputBarTop,
 	children,
-}) => (
+}) => {
+	const { t } = useTranslation();
+	return (
 	<div
 		ref={inputBarRef}
 		className="fixed left-0 right-0 bg-munchlist-green shadow-lg z-50"
@@ -35,14 +39,14 @@ const InputBar = ({
 					}}
 					onFocus={() => setInputFocused(true)}
 					onBlur={() => setTimeout(() => setInputFocused(false), 100)}
-					placeholder="Add grocery item..."
+					placeholder={t("inputBar.placeholder")}
 					className="flex-1 min-w-0 py-2 text-munchlist-ink placeholder:text-munchlist-muted focus:outline-none"
 				/>
 				<button
 					onClick={addItem}
 					className="flex-none w-10 h-10 flex items-center justify-center bg-munchlist-green text-white rounded-xl hover:bg-munchlist-green-deep transition-colors"
 				>
-					<span className="sr-only">Add</span>
+					<span className="sr-only">{t("inputBar.addSr")}</span>
 					<svg
 						className="w-5 h-5"
 						fill="none"
@@ -61,6 +65,7 @@ const InputBar = ({
 		</div>
 		{children}
 	</div>
-);
+	);
+};
 
 export default InputBar;

@@ -1,35 +1,33 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Settings, List, Edit3, ChevronRight, ChevronLeft } from "lucide-react";
 
-const screens = [
-	{
-		title: "Welcome to Munchlist!",
-		description:
-			"Your simple grocery shopping companion. Let's show you around!",
-		icon: <img src="logo.svg" alt="Munchlist Logo" className="w-24 h-24" />,
-	},
-	{
-		title: "Smart Autocomplete",
-		description:
-			"Start typing any grocery item and get suggestions from our database of common items. Save time with intelligent predictions.",
-		icon: <Edit3 className="w-16 h-16 text-munchlist-green" />,
-	},
-	{
-		title: "Organize Your Way",
-		description:
-			"Switch between list view and categorized view to organize your groceries by type - produce, dairy, meat, and more.",
-		icon: <List className="w-16 h-16 text-munchlist-green" />,
-	},
-	{
-		title: "Precise Quantities",
-		description:
-			"Set any items quantity to an exact amounts and unit. From 2.5 kg potatoes to 3 cans of tomatoes.",
-		icon: <Settings className="w-16 h-16 text-munchlist-green" />,
-	},
-];
-
 export default function Onboarding({ onFinish }: { onFinish: () => void }) {
+	const { t } = useTranslation();
 	const [index, setIndex] = useState(0);
+
+	const screens = [
+		{
+			title: t("onboarding.screen1Title"),
+			description: t("onboarding.screen1Desc"),
+			icon: <img src="logo.svg" alt="Munchlist Logo" className="w-24 h-24" />,
+		},
+		{
+			title: t("onboarding.screen2Title"),
+			description: t("onboarding.screen2Desc"),
+			icon: <Edit3 className="w-16 h-16 text-munchlist-green" />,
+		},
+		{
+			title: t("onboarding.screen3Title"),
+			description: t("onboarding.screen3Desc"),
+			icon: <List className="w-16 h-16 text-munchlist-green" />,
+		},
+		{
+			title: t("onboarding.screen4Title"),
+			description: t("onboarding.screen4Desc"),
+			icon: <Settings className="w-16 h-16 text-munchlist-green" />,
+		},
+	];
 
 	const next = () => {
 		if (index < screens.length - 1) {
@@ -98,7 +96,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 								className="min-w-20 px-4 py-3 bg-munchlist-surface-alt text-munchlist-ink font-bold rounded-xl hover:bg-munchlist-line transition-colors flex items-center justify-center gap-2"
 								onClick={() => onFinish()}
 							>
-								Skip
+								{t("onboarding.skip")}
 							</button>
 						)}
 
@@ -108,14 +106,16 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 								onClick={back}
 							>
 								<ChevronLeft className="w-4 h-4" />
-								Back
+								{t("onboarding.back")}
 							</button>
 						)}
 						<button
 							className="min-w-20 px-4 py-3 bg-munchlist-green text-white font-bold rounded-xl hover:bg-munchlist-green-deep transition-colors flex items-center justify-center gap-2"
 							onClick={next}
 						>
-							{index === screens.length - 1 ? "Get Started" : "Next"}
+							{index === screens.length - 1
+								? t("onboarding.getStarted")
+								: t("onboarding.next")}
 							{index < screens.length - 1 && (
 								<ChevronRight className="w-4 h-4" />
 							)}
@@ -130,7 +130,7 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 						className="min-w-20 px-4 py-3 bg-munchlist-surface-alt text-munchlist-ink font-bold rounded-xl hover:bg-munchlist-line transition-colors flex items-center justify-center gap-2"
 						onClick={() => onFinish()}
 					>
-						Skip
+						{t("onboarding.skip")}
 					</button>
 				)}
 				{index > 0 && (
@@ -139,14 +139,16 @@ export default function Onboarding({ onFinish }: { onFinish: () => void }) {
 						onClick={back}
 					>
 						<ChevronLeft className="w-4 h-4" />
-						Back
+						{t("onboarding.back")}
 					</button>
 				)}
 				<button
 					className="min-w-20 px-4 py-3 bg-munchlist-green text-white font-bold rounded-xl hover:bg-munchlist-green-deep transition-colors flex items-center justify-center gap-2"
 					onClick={next}
 				>
-					{index === screens.length - 1 ? "Get Started" : "Next"}
+					{index === screens.length - 1
+						? t("onboarding.getStarted")
+						: t("onboarding.next")}
 					{index < screens.length - 1 && <ChevronRight className="w-4 h-4" />}
 				</button>
 			</div>

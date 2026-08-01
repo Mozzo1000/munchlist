@@ -1,0 +1,83 @@
+{
+	"common": {
+		"cancel": "Avbryt",
+		"save": "Spara",
+		"edit": "Redigera",
+		"delete": "Ta bort"
+	},
+	"onboarding": {
+		"screen1Title": "Välkommen till Munchlist!",
+		"screen1Desc": "Din enkla följeslagare för matinköp. Nu visar vi dig runt!",
+		"screen2Title": "Smart autokomplettering",
+		"screen2Desc": "Börja skriva en vara så får du förslag från vår databas med vanliga varor. Spara tid med smarta förslag.",
+		"screen3Title": "Organisera på ditt sätt",
+		"screen3Desc": "Växla mellan listvy och kategorivy för att organisera dina varor efter typ – frukt & grönt, mejeri, kött och mer.",
+		"screen4Title": "Exakta mängder",
+		"screen4Desc": "Ange exakt mängd och enhet för varje vara. Från 2,5 kg potatis till 3 burkar tomater.",
+		"skip": "Hoppa över",
+		"back": "Tillbaka",
+		"next": "Nästa",
+		"getStarted": "Kom igång"
+	},
+	"header": {
+		"showByCategory": "Visa efter kategori",
+		"showAsList": "Visa som lista",
+		"settings": "Inställningar"
+	},
+	"inputBar": {
+		"placeholder": "Lägg till vara...",
+		"addSr": "Lägg till"
+	},
+	"editDrawer": {
+		"title": "Redigera",
+		"nameLabel": "Namn",
+		"namePlaceholder": "Redigera varunamn...",
+		"quantityLabel": "Mängd",
+		"quantityPlaceholder": "Ange mängd...",
+		"unitLabel": "Enhet",
+		"noneOption": "Ingen",
+		"categoryLabel": "Kategori"
+	},
+	"shoppingList": {
+		"emptyTitle": "Din inköpslista är tom",
+		"emptySubtitle": "Lägg till några varor för att komma igång!",
+		"completed": "Klart",
+		"clearCompleted": "Rensa klara varor ({{count}})"
+	},
+	"suggestionBar": {
+		"commonItems": "Vanliga varor"
+	},
+	"deleteDialog": {
+		"confirm": "Ta bort \"{{name}}\" från dina egna förslag?"
+	},
+	"settings": {
+		"title": "Inställningar",
+		"language": "Språk",
+		"english": "Engelska",
+		"swedish": "Svenska"
+	},
+	"categories": {
+		"produce": "Frukt & Grönt",
+		"dairy": "Mejeri",
+		"bakery": "Bageri",
+		"meat": "Kött",
+		"seafood": "Fisk & Skaldjur",
+		"pantry": "Skafferi",
+		"frozen": "Frys",
+		"beverages": "Dryck",
+		"household": "Hushåll",
+		"other": "Övrigt"
+	},
+	"units": {
+		"pcs": "st",
+		"kg": "kg",
+		"g": "gram",
+		"l": "liter",
+		"ml": "ml",
+		"dl": "dl",
+		"jars": "burkar",
+		"bottles": "flaskor",
+		"bags": "påsar",
+		"packs": "förpackningar"
+	}
+}

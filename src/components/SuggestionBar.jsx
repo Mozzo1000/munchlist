@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
 	getCustomGroceryItems,
 	addCustomGroceryItem,
@@ -9,6 +10,7 @@ const SuggestionBar = ({
 	selectSuggestion,
 	setDeleteDialog,
 }) => {
+	const { t } = useTranslation();
 	if (!inputFocused || filteredSuggestions.length === 0) return null;
 
 	const isCustom = (name) =>
@@ -37,7 +39,7 @@ const SuggestionBar = ({
 		<div className="absolute w-full bottom-full left-0 z-50 bg-munchlist-green-deep rounded-t-3xl">
 			<div className="rounded-t-3xl p-4 pb-2">
 				<div className="text-left md:text-center text-sm font-bold tracking-wide uppercase text-white/85">
-					Vanliga varor
+					{t("suggestionBar.commonItems")}
 				</div>
 			</div>
 			<div className="flex flex-row gap-2 px-4 pb-4 overflow-x-auto no-scrollbar md:justify-center">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
 	Check,
 	Trash2,
@@ -16,13 +17,14 @@ const ShoppingList = ({
 	setDropdownOpen,
 	db,
 }) => {
+	const { t } = useTranslation();
 	const groupedItems = {};
 	(items || []).forEach((item) => {
 		if (item.completed) {
-			if (!groupedItems["Completed"]) groupedItems["Completed"] = [];
-			groupedItems["Completed"].push(item);
+			if (!groupedItems["completed"]) groupedItems["completed"] = [];
+			groupedItems["completed"].push(item);
 		} else {
-			const cat = item.category || "Other";
+			const cat = item.category || "other";
 			if (!groupedItems[cat]) groupedItems[cat] = [];
 			groupedItems[cat].push(item);
 		}
@@ -33,16 +35,19 @@ const ShoppingList = ({
 		await db.items.delete(id);
 	};
 
+	const categoryLabel = (categoryId) =>
+		categoryId === "completed" ? t("shoppingList.completed") : t(`categories.${categoryId}`);
+
 	return (
 		<div className="px-4 pb-48 space-y-2">
 			{items?.length === 0 ? (
 				<div className="text-center py-12">
 					<ShoppingCart className="w-20 h-20 text-munchlist-muted/40 mx-auto mb-4" />
 					<p className="text-2xl font-extrabold text-munchlist-ink mb-2">
-						Your shopping list is empty
+						{t("shoppingList.emptyTitle")}
 					</p>
 					<p className="text-lg text-munchlist-muted">
-						Add some items to get started!
+						{t("shoppingList.emptySubtitle")}
 					</p>
 				</div>
 			) : (
@@ -50,19 +55,19 @@ const ShoppingList = ({
 					{groupByCategory
 						? [
 								...Object.keys(groupedItems).filter(
-									(item) => item !== "Completed"
+									(item) => item !== "completed"
 								),
-								...(groupedItems["Completed"] ? ["Completed"] : []),
+								...(groupedItems["completed"] ? ["completed"] : []),
 						  ].map((category) => (
 								<div key={category} className="mb-6">
 									<h2
 										className={`text-sm font-extrabold tracking-wide mb-2 ${
-											category === "Completed"
+											category === "completed"
 												? "text-munchlist-muted"
 												: "text-munchlist-green"
 										}`}
 									>
-										{category === "Completed" ? "Completed" : category}
+										{categoryLabel(category)}
 									</h2>
 									{groupedItems[category].map((item) => (
 										<ShoppingListItem
@@ -101,7 +106,7 @@ const ShoppingList = ({
 						}}
 						className="px-4 py-2 text-sm font-medium text-munchlist-muted hover:text-munchlist-danger hover:bg-munchlist-surface-alt rounded-xl transition-colors"
 					>
-						Clear completed items ({completedCount})
+						{t("shoppingList.clearCompleted", { count: completedCount })}
 					</button>
 				</div>
 			)}
@@ -117,6 +122,7 @@ const ShoppingListItem = ({
 	dropdownOpen,
 	setDropdownOpen,
 }) => {
+	const { t } = useTranslation();
 	const [justToggled, setJustToggled] = useState(false);
 
 	const handleToggle = () => {
@@ -155,7 +161,7 @@ const ShoppingListItem = ({
 					}`}
 				>
 					{item.quantity ? item.quantity : ""}
-					{item.unit ? `${item.quantity ? " " : ""}${item.unit}` : ""}
+					{item.unit ? `${item.quantity ? " " : ""}${t(`units.${item.unit}`)}` : ""}
 				</span>
 				<span
 					className={
@@ -192,7 +198,7 @@ const ShoppingListItem = ({
 								className="w-full text-left px-3 py-2 rounded-xl hover:bg-munchlist-surface-alt"
 							>
 								<Pencil className="inline mr-2 w-4 h-4" />
-								Edit
+								{t("common.edit")}
 							</button>
 							<button
 								onClick={() => {
@@ -202,7 +208,7 @@ const ShoppingListItem = ({
 								className="w-full text-left px-3 py-2 rounded-xl text-munchlist-danger hover:bg-munchlist-surface-alt"
 							>
 								<Trash2 className="inline mr-2 w-4 h-4" />
-								Delete
+								{t("common.delete")}
 							</button>
 						</div>
 					</>

@@ -1,0 +1,83 @@
+{
+	"common": {
+		"cancel": "Cancel",
+		"save": "Save",
+		"edit": "Edit",
+		"delete": "Delete"
+	},
+	"onboarding": {
+		"screen1Title": "Welcome to Munchlist!",
+		"screen1Desc": "Your simple grocery shopping companion. Let's show you around!",
+		"screen2Title": "Smart Autocomplete",
+		"screen2Desc": "Start typing any grocery item and get suggestions from our database of common items. Save time with intelligent predictions.",
+		"screen3Title": "Organize Your Way",
+		"screen3Desc": "Switch between list view and categorized view to organize your groceries by type - produce, dairy, meat, and more.",
+		"screen4Title": "Precise Quantities",
+		"screen4Desc": "Set any items quantity to an exact amounts and unit. From 2.5 kg potatoes to 3 cans of tomatoes.",
+		"skip": "Skip",
+		"back": "Back",
+		"next": "Next",
+		"getStarted": "Get Started"
+	},
+	"header": {
+		"showByCategory": "Show by category",
+		"showAsList": "Show as list",
+		"settings": "Settings"
+	},
+	"inputBar": {
+		"placeholder": "Add grocery item...",
+		"addSr": "Add"
+	},
+	"editDrawer": {
+		"title": "Edit",
+		"nameLabel": "Name",
+		"namePlaceholder": "Edit item name...",
+		"quantityLabel": "Quantity",
+		"quantityPlaceholder": "Enter quantity...",
+		"unitLabel": "Unit",
+		"noneOption": "None",
+		"categoryLabel": "Category"
+	},
+	"shoppingList": {
+		"emptyTitle": "Your shopping list is empty",
+		"emptySubtitle": "Add some items to get started!",
+		"completed": "Completed",
+		"clearCompleted": "Clear completed items ({{count}})"
+	},
+	"suggestionBar": {
+		"commonItems": "Common items"
+	},
+	"deleteDialog": {
+		"confirm": "Delete \"{{name}}\" from your custom suggestions?"
+	},
+	"settings": {
+		"title": "Settings",
+		"language": "Language",
+		"english": "English",
+		"swedish": "Swedish"
+	},
+	"categories": {
+		"produce": "Fruit & Vegetables",
+		"dairy": "Dairy",
+		"bakery": "Bakery",
+		"meat": "Meat",
+		"seafood": "Fish & Seafood",
+		"pantry": "Pantry",
+		"frozen": "Frozen",
+		"beverages": "Beverages",
+		"household": "Household",
+		"other": "Other"
+	},
+	"units": {
+		"pcs": "pcs",
+		"kg": "kg",
+		"g": "g",
+		"l": "l",
+		"ml": "ml",
+		"dl": "dl",
+		"jars": "jars",
+		"bottles": "bottles",
+		"bags": "bags",
+		"packs": "packs"
+	}
+}

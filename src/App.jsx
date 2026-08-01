@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "./db.jsx";
 import Header from "./components/Header";
 import ShoppingList from "./components/ShoppingList";
 import InputBar from "./components/InputBar";
 import EditDrawer from "./components/EditDrawer.jsx";
+import SettingsDrawer from "./components/SettingsDrawer.jsx";
 import SuggestionBar from "./components/SuggestionBar";
 import {
-	COMMON_GROCERY_ITEMS,
-	CATEGORIES,
+	CATEGORY_IDS,
 	getCustomGroceryItems,
 	addCustomGroceryItem,
 	getAllGroceryItems,
@@ -17,6 +18,7 @@ import {
 import Onboarding from "./components/Onboarding";
 
 function App() {
+	const { t, i18n } = useTranslation();
 	const [showOnboarding, setShowOnboarding] = useState(() => {
 		return localStorage.getItem("munchlist-onboarded") !== "true";
 	});
@@ -34,8 +36,9 @@ function App() {
 	const [drawerItemId, setDrawerItemId] = useState(null);
 	const [quantity, setQuantity] = useState("");
 	const [unit, setUnit] = useState("");
-	const [category, setCategory] = useState(CATEGORIES[0]);
+	const [category, setCategory] = useState(CATEGORY_IDS[0]);
 	const [dropdownOpen, setDropdownOpen] = useState(null);
+	const [settingsOpen, setSettingsOpen] = useState(false);
 	const [inputFocused, setInputFocused] = useState(false);
 	const [groupByCategory, setGroupByCategory] = useState(() => {
 		const stored = localStorage.getItem("munchlist-group-by-category");
@@ -90,14 +93,14 @@ function App() {
 	}, [groupByCategory]);
 
 	useEffect(() => {
-		setFilteredSuggestions(getAllGroceryItems().slice(0, 8));
-	}, []);
+		setFilteredSuggestions(getAllGroceryItems(i18n.language).slice(0, 8));
+	}, [i18n.language]);
 
 	const handleItemInputChange = (value) => {
 		setNewItem(value);
 		setQuantity(""); // Reset temp values when typing
 		setUnit("");
-		let allItems = getAllGroceryItems();
+		let allItems = getAllGroceryItems(i18n.language);
 		let filtered = allItems;
 		if (value.length > 0) {
 			filtered = allItems
@@ -112,7 +115,7 @@ function App() {
 	const selectSuggestion = async (suggestion) => {
 		setNewItem(suggestion.name);
 		setShowSuggestions(false);
-		await addItem(null, suggestion.name, suggestion.category);
+		await addItem(null, suggestion.name, suggestion.categoryId);
 	};
 
 	const openDrawer = async (itemId) => {
@@ -124,12 +127,12 @@ function App() {
 			setQuantity(item.quantity ? item.quantity.toString() : "");
 			setUnit(item.unit || "");
 			setEditText(item.name);
-			setCategory(item.category || CATEGORIES[0]);
+			setCategory(item.category || CATEGORY_IDS[0]);
 		} else {
 			setQuantity("");
 			setUnit("");
 			setEditText("");
-			setCategory(CATEGORIES[0]);
+			setCategory(CATEGORY_IDS[0]);
 		}
 		setDrawerItemId(itemId);
 		setDrawerOpen(true);
@@ -139,6 +142,9 @@ function App() {
 		setDrawerOpen(false);
 		setDrawerItemId(null);
 	};
+
+	const openSettings = () => setSettingsOpen(true);
+	const closeSettings = () => setSettingsOpen(false);
 
 	const saveItemEdit = async () => {
 		if (drawerItemId) {
@@ -167,7 +173,7 @@ function App() {
 			if (isCustom) {
 				updateCustomGroceryItem(currentItem.name, {
 					name: updates.name,
-					category: updates.category,
+					categoryId: updates.category,
 				});
 			}
 
@@ -181,17 +187,17 @@ function App() {
 		const name = (nameOverride !== undefined ? nameOverride : newItem).trim();
 		if (!name) return;
 
-		const category = categoryOverride || "Övrigt";
+		const category = categoryOverride || "other";
 
 		const existingItem = items.find(
 			(i) => i.name.trim().toLowerCase() === name.toLowerCase()
 		);
 
-		const allItems = getAllGroceryItems();
+		const allItems = getAllGroceryItems(i18n.language);
 		if (
 			!allItems.some((item) => item.name.toLowerCase() === name.toLowerCase())
 		) {
-			addCustomGroceryItem({ name, category });
+			addCustomGroceryItem({ name, categoryId: category });
 		}
 
 		if (existingItem) {
@@ -208,7 +214,7 @@ function App() {
 			setNewItem("");
 			setQuantity("");
 			setUnit("");
-			setFilteredSuggestions(COMMON_GROCERY_ITEMS.slice(0, 8));
+			setFilteredSuggestions(getAllGroceryItems(i18n.language).slice(0, 8));
 			return;
 		}
 
@@ -230,25 +236,13 @@ function App() {
 		setNewItem("");
 		setQuantity("");
 		setUnit("");
-		setFilteredSuggestions(COMMON_GROCERY_ITEMS.slice(0, 8));
+		setFilteredSuggestions(getAllGroceryItems(i18n.language).slice(0, 8));
 	};
 
 	const toggleComplete = async (id) => {
 		const item = items.find((i) => i.id === id);
 		await db.items.update(id, { completed: !item.completed });
 	};
-
-	const groupedItems = {};
-	(items || []).forEach((item) => {
-		if (item.completed) {
-			if (!groupedItems["Completed"]) groupedItems["Completed"] = [];
-			groupedItems["Completed"].push(item);
-		} else {
-			const cat = item.category || "Other";
-			if (!groupedItems[cat]) groupedItems[cat] = [];
-			groupedItems[cat].push(item);
-		}
-	});
 
 	return (
 		// Height and scroll position are never touched by focus/keyboard state:
@@ -262,6 +256,7 @@ function App() {
 			<Header
 				groupByCategory={groupByCategory}
 				setGroupByCategory={setGroupByCategory}
+				openSettings={openSettings}
 			/>
 			<div
 				className="flex-1 flex flex-col items-center justify-start overflow-y-auto"
@@ -321,14 +316,14 @@ function App() {
 				setCategory={setCategory}
 				saveItemEdit={saveItemEdit}
 			/>
+			<SettingsDrawer settingsOpen={settingsOpen} closeSettings={closeSettings} />
 			{showOnboarding && <Onboarding onFinish={handleCloseOnboarding} />}
 
 			{deleteDialog.open && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
 					<div className="bg-white rounded-2xl p-6 shadow-lg border border-munchlist-line">
 						<p className="mb-4 text-munchlist-ink">
-							Delete "{deleteDialog.suggestion.name}" from your custom
-							suggestions?
+							{t("deleteDialog.confirm", { name: deleteDialog.suggestion.name })}
 						</p>
 						<div className="flex gap-3 justify-end">
 							<button
@@ -337,7 +332,7 @@ function App() {
 									setDeleteDialog({ open: false, suggestion: null })
 								}
 							>
-								Cancel
+								{t("common.cancel")}
 							</button>
 							<button
 								className="px-4 py-2 font-bold bg-munchlist-danger text-white rounded-xl hover:opacity-90"
@@ -361,7 +356,7 @@ function App() {
 									setDeleteDialog({ open: false, suggestion: null });
 								}}
 							>
-								Delete
+								{t("common.delete")}
 							</button>
 						</div>
 					</div>
